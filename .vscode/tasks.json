@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Launch Dev Container",
+            "type": "shell",
+            "windows": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "podman run --rm -it -v $(wslpath ''${workspaceFolder}''):/srv/jekyll -p 4000:4000 docker.io/jekyll/jekyll:latest jekyll serve --watch --force_polling --verbose --livereload"
+                ]
+            },
+            "linux": {
+                "command": "podman",
+                "args": [
+                    "run", "--rm", "-it",
+                    "-v", "${PWD}:/srv/jekyll",
+                    "-p", "4000:4000",
+                    "docker.io/jekyll/jekyll:latest",
+                    "jekyll serve --watch --force_polling --verbose --livereload"
+                ]
+            },
+            "problemMatcher": []
+        }
+    ]
+}
