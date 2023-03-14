@@ -7,7 +7,7 @@ plugins:
 
 github:
   repository_name: ca
-  repository_url: https://github.com/wranders/ca
+  repository_url: https://github.com/doubleu-labs/ca
 exclude:
 - "CNAME"
 - "LICENSE"
