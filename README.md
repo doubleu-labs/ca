@@ -1,8 +1,3 @@
----
-permalink: index.html
-layout: default
----
-
 # CA
 
 This is a work-in-progress proof-of-concept for hosting internal Root
