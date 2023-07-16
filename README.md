@@ -59,7 +59,7 @@ to be `DNS only`. Cloudflare will warn you that `DNS only` records will leak
 your IP address, but this is a non-issue for Github Pages since those IPs aren't
 a secret.
 
-![Cloudflare DNS Record](/assets/images/cname.png)
+![Cloudflare DNS Record](image/cname.png)
 
 Place a `CNAME` file at the root of your repository and a simple `index.html`
 file to serve if you want. You can probably get away with it being empty.
