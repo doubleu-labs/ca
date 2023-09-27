@@ -8,8 +8,8 @@ entry will be created and linked from here.
 
 ## Assets
 
-- [DoubleU Root CA Certificate](/DoubleU_Root_CA.crt)
-- [DoubleU Root CA Certificate Revocation List (CRL)](/DoubleU_Root_CA.crl)
+- [DoubleU Root CA Certificate](/DoubleU_Root_CA_01.crt)
+- [DoubleU Root CA Certificate Revocation List (CRL)](/DoubleU_Root_CA_01.crl)
 
 ## Why?
 
