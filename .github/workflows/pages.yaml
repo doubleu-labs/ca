@@ -9,13 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: wranders/markdown-to-pages-action@v0
+    - uses: actions/checkout@v4
+    - uses: wranders/markdown-to-pages-action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
     - run: cp *.{crl,crt} CNAME dist/
     - run: cp -r image/ dist/
-    - uses: actions/upload-pages-artifact@v2
+    - uses: actions/upload-pages-artifact@v3
       with:
         path: dist
   deploy:
@@ -26,7 +26,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deplotment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-    - uses: actions/deploy-pages@v1
+    - uses: actions/deploy-pages@v4
       id: deployment
