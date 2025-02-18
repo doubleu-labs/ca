@@ -14,14 +14,14 @@ entry will be created and linked from here.
 ## Why?
 
 When setting up an internal PKI for a [homelab](https://www.reddit.com/r/homelab/),
-you might find yourself facing a chicken-and-egg problem when it comes to how to
-host PKI assets, often needing them before you have the ability to host them
-internally, or you may not want to dedicate any hardware to a simple file
-server.
+you might find yourself facing a chicken-and-egg problem when it comes to
+hosting PKI assets. Often, you'll need them before your have the ability to host
+them internally and you may not want to dedicate any resouces to serving static
+files that change infrequently and need availability.
 
 Github Pages allows repositories to occupy subdomains, so you can use one to
 dedicate to your CA assets, leaving you free to implement the rest of your PKI
-in any way you see fit without tying up hardware locally.
+in any way you see fit without tying up any resources locally.
 
 ## No HTTPS?
 
@@ -33,12 +33,13 @@ CRL Distribution Points (CDP)
 - [&#167; 4.2.2.1](https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.2.1) -
 Authority Information Access (AIA)
 
-The two CA assets that I'm concerned about are CRLs and certificates defined by
-`caIssuers` AIA entries.
+The two assets that we're concerned with are certificates defined by `caIssuers`
+AIA extensions, and Certificate Revocation Lists (CRL) defined by
+`cRLDistributionPoints` CDP extensions.
 
 Both `MUST` be DER encoded and accessible only from HTTP. Some PKI frameworks
 (notably Windows' `CryptoAPI`) will silently fail if either of these entries
-contain HTTPS URIs.
+contain HTTPS URIs, though *most* applications will retrieve them from either.
 
 Not having encryption isn't an issue since certificates and CRLs are
 cryptographically signed and integrity can be verified independent of the
@@ -66,13 +67,13 @@ file to serve if you want. You can probably get away with it being empty.
 
 Then, place your root certificate and CRL in your preferred location in the
 repository. I chose the root level since this repository will only contain these
-files (plus this Jekyll site).
+files.
 
 ## How to Use
 
-For those who are just getting started with PKI, the CDP and `caIssuers` AIA
-extension will not be present on your root certificate, but on the certificates
-that your root signs.
+For those who are just getting started with PKI, the CDP and AIA extensions will
+not be present on your root certificate, but on the certificates that your root
+signs.
 
 Certificates signed by your root will show something similar under the `x509v3
 Extensions`:
@@ -83,8 +84,8 @@ X509v3 extensions:
     X509v3 CRL Distribution Points:
 
         Full Name:
-            URI:http://ca.doubleu.codes/DoubleU_Root_CA.crl
+            URI:http://ca.doubleu.codes/DoubleU_Root_CA_01.crl
 
     Authority Information Access:
-        CA Issuers - URI:http://ca.doubleu.codes/DoubleU_Root_CA.crt
+        CA Issuers - URI:http://ca.doubleu.codes/DoubleU_Root_CA_01.crt
 ```
