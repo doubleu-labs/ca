@@ -14,7 +14,6 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
     - run: cp *.{crl,crt} CNAME dist/
-    - run: cp -r image/ dist/
     - uses: actions/upload-pages-artifact@v3
       with:
         path: dist
